@@ -1,0 +1,26 @@
+version: '3'
+services:
+  db:
+    image: postgres:13
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres_db
+    ports:
+      - "54322:5432"
+  web:
+    build: .
+    command: bash -c "npm run start:debug"
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "3002:3002"
+      - "9229:9229"
+    links:
+      - db
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true

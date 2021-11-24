@@ -1,0 +1,12 @@
+FROM node:14
+
+ARG APP_DIR=/usr/src/app
+RUN mkdir -p ${APP_DIR}
+WORKDIR ${APP_DIR}
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 3002
