@@ -54,7 +54,6 @@ export class UserService {
     };
   }
 
-  // fix response
   async signInV2(loginUserDto: LoginUserDto): Promise<UserLoginForResponse> {
     const user = await this.userRepository.getUserByEmail(loginUserDto.email);
     if (!user) {
@@ -65,9 +64,25 @@ export class UserService {
       throw new UnauthorizedException('Incorrect email or password');
     }
     const accessToken = this.generateAccessToken(user);
+    const userForResponse = this.serializeUserForResponse(user);
     return {
-      user,
+      user: userForResponse,
       accessToken,
+    };
+  }
+
+  private serializeUserForResponse(user: UserForResponse): UserForResponse {
+    return {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      state: user.state,
+      phone: user.phone,
+      gender: user.gender,
+      birthday: user.birthday,
+      age: user.age,
+      favoriteFood: user.favoriteFood,
+      discount: user.discount,
     };
   }
 

@@ -44,7 +44,6 @@ export class UserController {
 
   @Version('2')
   @Post('/signin')
-  @UseInterceptors(UserInterceptor)
   signInV2(@Body(ValidationPipe) loginUserDto: LoginUserDto): Promise<UserLoginForResponse> {
     return this.userService.signInV2(loginUserDto);
   }
