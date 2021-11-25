@@ -4,7 +4,6 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import * as typeOrmConfig from '../ormconfig.js';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
 require('dotenv').config();
 
 console.log(typeOrmConfig);

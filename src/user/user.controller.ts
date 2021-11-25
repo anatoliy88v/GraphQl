@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  Get,
   Post,
   UseInterceptors,
   UsePipes,
@@ -14,7 +13,6 @@ import { UserInterceptor } from './interceptors/user.interceptor';
 import { UserForResponse } from './interfaces/user-interfaces';
 import { UserLoginForResponse } from './interfaces/user-login-interfaces';
 import { UserTransformPipe } from './pipes/user-transform.pipe';
-import { User } from './user.entity';
 import { UserService } from './user.service';
 
 @Controller('user')
