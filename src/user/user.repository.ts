@@ -14,28 +14,16 @@ export class UserRepository extends Repository<User> {
       email,
       password,
       name,
-      phone,
-      state,
-      stripeId,
-      gender,
-      birthday,
-      age,
-      favoriteFood,
-      discount,
+      avatar,
+      courseId,
     } = addUserDto;
     const user = new User();
     user.email = email;
     user.salt = await bcrypt.genSalt();
     user.password = await this.hashPassword(password, user.salt);
     user.name = name;
-    user.phone = phone;
-    user.state = state;
-    user.stripeId = stripeId;
-    user.gender = gender;
-    user.birthday = birthday;
-    user.age = age;
-    user.favoriteFood = favoriteFood;
-    user.discount = discount;
+    user.avatar = avatar;
+    user.courseId = courseId;
 
     try {
       await user.save();

@@ -16,7 +16,7 @@ services:
     volumes:
       - .:/usr/src/app
     ports:
-      - "3002:3002"
+      - "3003:3003"
       - "9229:9229"
     links:
       - db

@@ -1,3 +1,4 @@
+import { Field, InputType } from '@nestjs/graphql';
 import {
   IsString,
   Matches,
@@ -5,20 +6,17 @@ import {
   MinLength,
   IsEmail,
   IsNotEmpty,
-  IsBoolean,
-  IsDate,
-  IsPhoneNumber,
-  IsInt,
-  IsArray,
-  IsNumber,
 } from 'class-validator';
 
+@InputType()
 export class AddUserDto {
+  @Field()
   @IsString({ message: 'Should be of type string' })
   @IsEmail({}, { message: 'Email is incorrect' })
   @IsNotEmpty()
   email: string;
 
+  @Field()
   @IsString({ message: 'Should be of type string' })
   @MinLength(8)
   @MaxLength(50)
@@ -29,39 +27,17 @@ export class AddUserDto {
   @IsNotEmpty()
   password: string;
 
+  @Field()
   @IsString({ message: 'Should be of type string' })
   @IsNotEmpty()
   name: string;
 
-  @IsPhoneNumber()
-  @IsNotEmpty()
-  phone: string;
-
+  @Field()
   @IsString({ message: 'Should be of type string' })
   @IsNotEmpty()
-  state: string;
+  avatar: string;
 
-  @IsString({ message: 'Should be of type string' })
+  @Field()
   @IsNotEmpty()
-  stripeId: string;
-
-  @IsBoolean({ message: 'Should be of type string' })
-  @IsNotEmpty()
-  gender: boolean;
-
-  @IsDate({ message: 'Should be of type Date' })
-  @IsNotEmpty()
-  birthday: string;
-
-  @IsInt({ message: 'Should be of type number' })
-  @IsNotEmpty()
-  age: number;
-
-  @IsArray()
-  @IsNotEmpty()
-  favoriteFood: string[];
-
-  @IsNumber()
-  @IsNotEmpty()
-  discount: number;
+  courseId: number;
 }

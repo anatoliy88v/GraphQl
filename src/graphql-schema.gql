@@ -1,0 +1,131 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Teacher {
+  id: Float!
+  email: String!
+  name: String!
+  avatar: String!
+  courseId: Float
+  course: Course!
+  users: [User!]!
+}
+
+type Topic {
+  id: Float!
+  title: String!
+  description: String!
+  image: String!
+  courseId: Float
+  course: Course!
+  users: [User!]!
+}
+
+type Course {
+  id: Float!
+  title: String!
+  description: String!
+  users: [User!]
+  teachers: [Teacher!]
+  topics: [Topic!]
+}
+
+type User {
+  id: Float!
+  email: String!
+  password: String
+  salt: String
+  createdAt: DateTime!
+  updatedAt: DateTime
+  name: String!
+  avatar: String!
+  courseId: Float
+  course: Course!
+  teachers: [Teacher!]!
+  topics: [Topic!]!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  getAllUsers: [User!]!
+  getUserById(id: Int!): User!
+  getAllCourses: [Course!]!
+  getCourseById(id: Int!): Course!
+  getAllTeachers: [Teacher!]!
+  getTeacherById(id: Int!): Teacher!
+  getAllTopics: [Topic!]!
+  getTopicById(id: Int!): Topic!
+}
+
+type Mutation {
+  signUp(addUserDto: AddUserDto!): User!
+  signIn(loginUserDto: LoginUserDto!): User!
+  createCourse(createCourseInput: CreateCourseInput!): Course!
+  updateCourse(updateCourseInput: UpdateCourseInput!): Course!
+  removeCourse(id: Int!): Course!
+  createTeacher(createTeacherInput: CreateTeacherInput!): Teacher!
+  updateTeacher(updateTeacherInput: UpdateTeacherInput!): Teacher!
+  removeTeacher(id: Int!): Teacher!
+  createTopic(createTopicInput: CreateTopicInput!): Topic!
+  updateTopic(updateTopicInput: UpdateTopicInput!): Topic!
+  removeTopic(id: Int!): Topic!
+}
+
+input AddUserDto {
+  email: String!
+  password: String!
+  name: String!
+  avatar: String!
+  courseId: Float!
+}
+
+input LoginUserDto {
+  email: String!
+  password: String!
+}
+
+input CreateCourseInput {
+  title: String!
+  description: String!
+}
+
+input UpdateCourseInput {
+  id: Float!
+  title: String!
+  description: String!
+}
+
+input CreateTeacherInput {
+  email: String!
+  name: String!
+  avatar: String!
+  courseId: Float!
+}
+
+input UpdateTeacherInput {
+  email: String!
+  name: String!
+  avatar: String!
+  courseId: Float!
+  id: Int!
+}
+
+input CreateTopicInput {
+  title: String!
+  description: String!
+  image: String!
+  courseId: Float!
+}
+
+input UpdateTopicInput {
+  title: String
+  description: String
+  image: String
+  courseId: Float
+  id: Int!
+}
